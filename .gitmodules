@@ -1,0 +1,6 @@
+[submodule "commerce-backend"]
+	path = commerce-backend
+	url = https://github.com/KimYeonWook511/commerce-backend.git
+[submodule "commerce-infra"]
+	path = commerce-infra
+	url = https://github.com/KimYeonWook511/commerce-infra.git
