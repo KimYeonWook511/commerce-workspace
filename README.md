@@ -1,1 +1,25 @@
 # commerce-workspace
+
+커머스 플랫폼 개발 프로젝트
+
+## 구성
+
+| 서브모듈 | 설명 | 기술 스택 |
+|---|---|---|
+| [commerce-backend](commerce-backend/) | REST API 서버 | Java 21, Spring Boot 3, MySQL, Redis, Kafka |
+| [commerce-infra](commerce-infra/) | 운영 인프라 | Nginx, Docker Compose, Let's Encrypt |
+| [commerce-frontend](commerce-frontend/) | 웹 클라이언트 | (미개발) |
+
+## 문서
+
+| 문서 | 설명 |
+|---|---|
+| [시스템 아키텍처](docs/system-architecture.md) | 전체 시스템 구조 및 환경별 구성 |
+| [API 계약](docs/api-contract.md) | Frontend-Backend API 계약 |
+| [개발 현황](docs/progress.md) | 기능별 구현 현황 |
+
+## 시작하기
+
+```bash
+git clone --recurse-submodules <url>
+```
