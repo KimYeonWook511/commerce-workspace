@@ -8,7 +8,7 @@
 |---|---|---|
 | [commerce-backend](https://github.com/KimYeonWook511/commerce-backend) | REST API 서버 | Java 21, Spring Boot 3, MySQL, Redis, Kafka |
 | [commerce-infra](https://github.com/KimYeonWook511/commerce-infra) | 운영 인프라 | Nginx, Docker Compose, Let's Encrypt |
-| commerce-frontend | 웹 클라이언트 | (미개발) |
+| [commerce-frontend](https://github.com/KimYeonWook511/commerce-frontend) | 웹 클라이언트 | React 18, TypeScript, Vite, TanStack Query |
 
 ## 문서
 
