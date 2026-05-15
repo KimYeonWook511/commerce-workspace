@@ -4,3 +4,6 @@
 [submodule "commerce-infra"]
 	path = commerce-infra
 	url = https://github.com/KimYeonWook511/commerce-infra.git
+[submodule "commerce-frontend"]
+	path = commerce-frontend
+	url = https://github.com/KimYeonWook511/commerce-frontend.git
