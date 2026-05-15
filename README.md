@@ -6,9 +6,9 @@
 
 | 서브모듈 | 설명 | 기술 스택 |
 |---|---|---|
-| [commerce-backend](commerce-backend/) | REST API 서버 | Java 21, Spring Boot 3, MySQL, Redis, Kafka |
-| [commerce-infra](commerce-infra/) | 운영 인프라 | Nginx, Docker Compose, Let's Encrypt |
-| [commerce-frontend](commerce-frontend/) | 웹 클라이언트 | (미개발) |
+| [commerce-backend](https://github.com/KimYeonWook511/commerce-backend) | REST API 서버 | Java 21, Spring Boot 3, MySQL, Redis, Kafka |
+| [commerce-infra](https://github.com/KimYeonWook511/commerce-infra) | 운영 인프라 | Nginx, Docker Compose, Let's Encrypt |
+| commerce-frontend | 웹 클라이언트 | (미개발) |
 
 ## 문서
 
