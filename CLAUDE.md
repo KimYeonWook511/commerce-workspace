@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 모든 설명과 답변은 반드시 한국어로 작성한다.
 - 클래스, 메서드, 변수, 패키지 등 코드 식별자는 반드시 영어로 작성한다.
 - 코드 식별자에는 한국어를 섞지 않는다.
+- 한국어 문장에서 영문 용어 뒤 조사는 붙여 쓴다 (예: `race가`, `mock으로`, `latch는`, `stub한다`). 의존명사(`자체`, `간`, `등`)나 일반 명사는 띄어 쓴다 (예: `mock 응답`, `thread 간`).
 
 ## 워크스페이스 역할
 
@@ -61,25 +62,35 @@ docker compose -f docker-compose.local.yml up -d
 ./gradlew test
 
 # Testcontainers 통합 테스트 (Docker 필요)
-./gradlew dockerTest
+./gradlew integrationTest
 
-# CI 전체 테스트
-./gradlew ciTest
+# 동시성 / 데드락 테스트 (수동 실행)
+./gradlew concurrencyTest
 
-# NaverPay 샌드박스 테스트
-./gradlew naverPaySandboxTest
+# Spring Batch 통합 테스트
+./gradlew batchTest
+
+# 외부 PG 샌드박스 테스트 (수동 실행)
+./gradlew sandboxTest
 ```
+
+CI는 `./gradlew test`와 `./gradlew integrationTest batchTest`를 병렬 실행한다. `concurrencyTest`, `sandboxTest`는 CI 미포함이며 영향 범위에 맞춰 수동으로 실행한다.
 
 **테스트 태그 분류**
 
-| 태그 | 실행 조건 |
-|---|---|
-| `docker` | Docker 필요, `dockerTest` 태스크 |
-| `concurrency` | 동시성 테스트, 별도 실행 |
-| `batch` | Spring Batch 통합, 별도 실행 |
-| `sandbox` | 외부 API 샌드박스, 별도 실행 |
+태그는 두 축으로 구성된다.
 
-기본 `test` 태스크는 위 4개 태그를 제외하고 실행한다.
+| 태그 | 축 | 부여 대상 | 실행 태스크 |
+|---|---|---|---|
+| `docker` | 환경 | Testcontainers 사용 | `integrationTest` |
+| `sandbox` | 환경 | 외부 sandbox API | `sandboxTest` (수동) |
+| `concurrency` | 격리 | 동시성 / 데드락 | `concurrencyTest` (수동) |
+| `batch` | 격리 | Spring Batch 통합 | `batchTest` |
+| `learning` | 격리 | 학습 / 디버그 (`@Disabled`) | 실행 안 됨 |
+
+한 클래스에 두 축의 태그를 동시에 부여할 수 있다 (예: `docker + concurrency`). 격리 축 태그가 함께 붙으면 해당 격리 태스크 쪽으로만 매칭되어 자동 검증에서 빠진다.
+
+기본 `test` 태스크는 위 5개 태그를 모두 제외하고 단위/슬라이스 테스트만 실행한다.
 
 ## Git 규칙
 
@@ -131,4 +142,9 @@ git worktree add worktrees/<type>-<name> -b <type>/<name> develop
 - API 스펙: `commerce-backend/docs/api-spec.md`
 - 기능 범위: `commerce-backend/docs/PRD.md`
 - 설계 결정: `commerce-backend/docs/ADR.md`
+- 예외 처리 정책: `commerce-backend/docs/exception-strategy.md`
+- 로깅 컨벤션: `commerce-backend/docs/logging-conventions.md`
 - 테스트 컨벤션: `commerce-backend/docs/testing-conventions.md`
+- 태스크별 문서 운영 가이드: `commerce-backend/docs/tasks/README.md`
+- Claude Code 하네스 원칙: `commerce-backend/docs/claude-harness.md`
+- DDD 마이그레이션 회고: `commerce-backend/docs/ddd/`
